@@ -1,9 +1,12 @@
 let NeDB = require('nedb');
 let db = new NeDB({
     filename:'users.db',
-    autoload:true
+    autoload:true,
+    corruptAlertThreshold: 1
+    //exclui error/alert sobre corrupção de dados.
 });
 
+// config da REST API que consulta o banco de dados, e atraves de solicitações via postman(software), permite sua edição,exclusão e exibição dos dados. trazendo esses resultados para a porta localhost4001 atraves da rota "/users".
 module.exports = app => {
 
     let route = app.route('/users');
